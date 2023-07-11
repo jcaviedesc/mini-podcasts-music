@@ -1,2 +1,3 @@
 import PodcastGrid from "./PodcastGrid";
-export { PodcastGrid };
+import { HeaderLayout } from "./HeaderLayout";
+export { PodcastGrid, HeaderLayout };
