@@ -1,5 +1,9 @@
+"use client";
+import { useState } from "react";
+import styles from "./search.module.css";
+
 export function SearchBar() {
-  const [podcastsList, setPodcastList] = useState(podcasts);
+  const [podcastsList, setPodcastList] = useState([]);
   const onSearch = (event: { target: { value: string } }) => {
     const searchValue = event.target.value.toLowerCase();
     if (searchValue === "") {
