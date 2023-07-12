@@ -5,20 +5,20 @@ export interface Toppodcasts {
 export interface Feed {
   author: Author;
   entry: Podcast[];
-  icon: Icon;
-  id: Icon;
+  icon: AttributeWithLabel;
+  id: AttributeWithLabel;
   link: Link[];
-  rights: Icon;
-  title: Icon;
-  updated: Icon;
+  rights: AttributeWithLabel;
+  title: AttributeWithLabel;
+  updated: AttributeWithLabel;
 }
 
 export interface Author {
-  name: Icon;
-  uri: Icon;
+  name: AttributeWithLabel;
+  uri: AttributeWithLabel;
 }
 
-export interface Icon {
+export interface AttributeWithLabel {
   label: string;
 }
 
@@ -28,13 +28,13 @@ export interface Podcast {
   "im:artist": IMArtist;
   "im:contentType": IMContentType;
   "im:image": IMImage[];
-  "im:name": Icon;
+  "im:name": AttributeWithLabel;
   "im:price": IMPrice;
   "im:releaseDate": IMReleaseDate;
   link: Link;
-  rights?: Icon;
-  summary: Icon;
-  title: Icon;
+  rights?: AttributeWithLabel;
+  summary: AttributeWithLabel;
+  title: AttributeWithLabel;
 }
 
 export interface Category {
@@ -114,7 +114,7 @@ export enum IMPriceLabel {
 }
 
 export interface IMReleaseDate {
-  attributes: Icon;
+  attributes: AttributeWithLabel;
   label: Date;
 }
 

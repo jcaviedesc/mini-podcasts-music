@@ -7,10 +7,10 @@ type PodcastLayoutProps = {
 export default async function PodcastLayout({ children }: PodcastLayoutProps) {
   return (
     <div className={styles.podcastLayout}>
-      <div>
-        <SideBarPodcast title="" image={""} author={""} description={""} />
+      <div className={styles.detailPodcast}>
+        <SideBarPodcast />
       </div>
-      <div>{children}</div>
+      <div className={styles.childrenContent}>{children}</div>
     </div>
   );
 }

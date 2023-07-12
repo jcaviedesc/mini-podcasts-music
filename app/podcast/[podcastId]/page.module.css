@@ -1,4 +1,15 @@
 .podcastLayout {
   display: flex;
   flex-direction: row;
+  margin-top: 2.5rem;
+}
+
+.detailPodcast {
+  flex: 30;
+  margin: 0 3rem;
+}
+
+.childrenContent {
+  flex: 70;
+  margin-right: 3rem;
 }
