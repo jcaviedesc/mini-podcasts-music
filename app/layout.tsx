@@ -1,3 +1,4 @@
+import { PodcastProvider } from "./_providers/podcast";
 import { HeaderLayout } from "./components";
 import "./globals.css";
 
@@ -15,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <HeaderLayout />
-        {children}
+        <PodcastProvider>{children}</PodcastProvider>
       </body>
     </html>
   );

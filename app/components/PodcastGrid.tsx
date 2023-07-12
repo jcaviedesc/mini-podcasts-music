@@ -3,8 +3,10 @@ import styles from "../page.module.css";
 import podcastService from "../../services/podcasts.service";
 
 export default async function PodcastGrid() {
-  const data = await podcastService.listPodcasts({ limit: 100, genre: 1310 });
-  const podcasts = data.feed?.entry ?? [];
+  const podcasts = await podcastService.listPodcasts({
+    limit: 100,
+    genre: 1310,
+  });
   return (
     <div className={styles.grid}>
       {podcasts.map((podcast) => (

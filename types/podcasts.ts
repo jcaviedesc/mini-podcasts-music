@@ -1,10 +1,10 @@
-export interface Podcast {
+export interface Toppodcasts {
   feed: Feed;
 }
 
 export interface Feed {
   author: Author;
-  entry: PodcastListDetail[];
+  entry: Podcast[];
   icon: Icon;
   id: Icon;
   link: Link[];
@@ -22,7 +22,7 @@ export interface Icon {
   label: string;
 }
 
-export interface PodcastListDetail {
+export interface Podcast {
   category: Category;
   id: ID;
   "im:artist": IMArtist;

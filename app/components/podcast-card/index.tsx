@@ -1,13 +1,14 @@
 import Image from "next/image";
-import Link from "next/link";
-import { PodcastListDetail } from "../../../types/podcasts";
+import { Podcast } from "../../../types/podcasts";
 import styles from "./styles.module.css";
+import { PodcastLink } from "../PodcastLink";
 
-export const PodcastListDetailCard = (podcast: PodcastListDetail) => {
+export const PodcastListDetailCard = (podcast: Podcast) => {
   const podcastImage =
     podcast["im:image"].length > 2
       ? podcast["im:image"][2].label
       : podcast["im:image"][0].label;
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.imageContainer}>
@@ -18,12 +19,15 @@ export const PodcastListDetailCard = (podcast: PodcastListDetail) => {
           height={96}
         />
       </div>
-      <Link href={`podcast/${podcast.id.attributes["im:id"]}`}>
+      <PodcastLink
+        href={`podcast/${podcast.id.attributes["im:id"]}`}
+        podcast={podcast}
+      >
         <div className={styles.card}>
           <h3>{podcast["im:name"].label}</h3>
           <span>Author: {podcast["im:artist"].label}</span>
         </div>
-      </Link>
+      </PodcastLink>
     </div>
   );
 };
