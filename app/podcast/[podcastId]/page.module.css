@@ -1,0 +1,4 @@
+.podcastLayout {
+  display: flex;
+  flex-direction: row;
+}

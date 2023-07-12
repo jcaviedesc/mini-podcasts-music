@@ -3,7 +3,7 @@ import styles from "../page.module.css";
 import podcastService from "../../services/podcasts.service";
 
 export default async function PodcastGrid() {
-  const data = await podcastService.getPodcast({ limit: 100, genre: 1310 });
+  const data = await podcastService.listPodcasts({ limit: 100, genre: 1310 });
   const podcasts = data.feed?.entry ?? [];
   return (
     <div className={styles.grid}>
