@@ -6,10 +6,15 @@
 
 .detailPodcast {
   flex: 30;
-  margin: 0 3rem;
+  margin-right: 3rem;
+  margin-left: 1.5rem;
 }
 
 .childrenContent {
   flex: 70;
-  margin-right: 3rem;
+  margin-right: 1.5rem;
+}
+
+.w12 {
+  width: 12%;
 }

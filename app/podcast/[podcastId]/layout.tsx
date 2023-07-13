@@ -1,3 +1,4 @@
+import { EpisodeProvider } from "../../_providers/episode";
 import { SideBarPodcast } from "../../components/SideBarPodcast";
 import styles from "./page.module.css";
 
@@ -10,7 +11,9 @@ export default async function PodcastLayout({ children }: PodcastLayoutProps) {
       <div className={styles.detailPodcast}>
         <SideBarPodcast />
       </div>
-      <div className={styles.childrenContent}>{children}</div>
+      <EpisodeProvider>
+        <div className={styles.childrenContent}>{children}</div>
+      </EpisodeProvider>
     </div>
   );
 }

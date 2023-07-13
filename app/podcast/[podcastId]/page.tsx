@@ -1,11 +1,13 @@
 import dayjs from "dayjs";
 import Duration from "dayjs/plugin/duration";
 import podcastService from "../../../services/podcasts.service";
+import { EpisodeLink } from "../../components/EpisodeLink";
+import styles from "./page.module.css";
 
 dayjs.extend(Duration);
 
 type pageProps = {
-  params: { podcastId: string };
+  params: { podcastId: number };
 };
 
 export default async function PodcastDetailPage({
@@ -14,16 +16,20 @@ export default async function PodcastDetailPage({
   const { resultCount, results: episodes } = await podcastService.getPodcast({
     id: podcastId,
   });
+  console.log("-------------------");
+  console.log(episodes.slice(0, 2));
   return (
     <div>
-      <div>
-        <p>Episodes {resultCount}</p>
+      <div className="bg-white rounded-lg p-4 shadow mb-4">
+        <h3 className="text-gray-900 font-bold">Episodes {resultCount}</h3>
       </div>
-      <div>
+      <div className="bg-white rounded-lg p-4 shadow">
         <div className="flex p-4">
           <h3 className="flex-grow font-bold text-gray-600">Title</h3>
-          <p className="text-gray-600 font-bold">Date</p>
-          <p className="text-gray-600 font-bold">Duracion</p>
+          <p className={"text-gray-600 font-bold ".concat(styles.w12)}>Date</p>
+          <p className={"text-gray-600 font-bold ".concat(styles.w12)}>
+            Duracion
+          </p>
         </div>
         {episodes.map((episode, index) => {
           const duration = dayjs.duration(episode.trackTimeMillis);
@@ -32,13 +38,21 @@ export default async function PodcastDetailPage({
           return (
             <div
               key={episode.trackId}
-              className={index % 2 ? "flex p-4" : "flex p-4 bg-slate-300"}
+              className={`flex  p-4 ${index % 2 ? "bg-slate-300" : ""}`}
             >
-              <h3 className="flex-grow text-gray-600">{episode.trackName}</h3>
-              <p className="text-gray-600">
+              <EpisodeLink
+                href={`/podcast/${podcastId}/episode/${episode.trackId}`}
+                episode={episode}
+                className="flex flex-grow"
+              >
+                <h3 className="text-blue-500 hover:underline">
+                  {episode.trackName}
+                </h3>
+              </EpisodeLink>
+              <p className={"text-gray-600 ".concat(styles.w12)}>
                 {dayjs(episode.releaseDate).format("DD/MM/YYYY")}
               </p>
-              <p className="text-gray-600">
+              <p className={"text-gray-600 ".concat(styles.w12)}>
                 {minutes}:{seconds}
               </p>
             </div>
