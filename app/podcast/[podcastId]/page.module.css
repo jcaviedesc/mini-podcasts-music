@@ -1,7 +1,7 @@
 .podcastLayout {
   display: flex;
   flex-direction: row;
-  margin-top: 2.5rem;
+  margin: 2.5rem 3rem;
 }
 
 .detailPodcast {
