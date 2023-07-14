@@ -2,26 +2,19 @@
 import { useState } from "react";
 import styles from "./search.module.css";
 import { Podcast } from "../../../types/podcasts";
+import { usePodcasts } from "../../_providers/podcasts";
 
 export function SearchBar() {
-  const [podcastsList, setPodcastList] = useState<Podcast[]>([]);
+  const { filterPodcasts, podcasts } = usePodcasts();
   const onSearch = (event: { target: { value: string } }) => {
     const searchValue = event.target.value.toLowerCase();
-    if (searchValue === "") {
-      setPodcastList([]);
-    } else {
-      const filteredPodcasts = podcastsList.filter(
-        (podcasts) =>
-          podcasts["im:artist"].label.toLowerCase().includes(searchValue) ||
-          podcasts["im:name"].label.toLowerCase().includes(searchValue)
-      );
-      setPodcastList(filteredPodcasts);
-    }
+    filterPodcasts(searchValue);
   };
+
   return (
     <div className={styles.searchHeader}>
       <div className={styles.podcastSize}>
-        <span>{podcastsList.length}</span>
+        <span>{podcasts.length}</span>
       </div>
       <input
         type="search"

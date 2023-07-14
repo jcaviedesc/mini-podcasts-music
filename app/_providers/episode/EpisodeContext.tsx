@@ -8,7 +8,7 @@ type EpisodeContextValue = {
 
 export const EpisodeContext = React.createContext<EpisodeContextValue>({
   episode: undefined,
-  selectEpisode: (_Episode: PodcastEpisodesResult) => {
+  selectEpisode: (_Episode) => {
     /** noop */
   },
 });
