@@ -1,4 +1,3 @@
-import { Metadata, ResolvingMetadata } from "next";
 import dayjs from "dayjs";
 import Duration from "dayjs/plugin/duration";
 import podcastService from "../../../services/podcasts.service";
@@ -10,28 +9,6 @@ dayjs.extend(Duration);
 type pageProps = {
   params: { podcastId: number };
 };
-
-export async function generateMetadata(
-  { params }: pageProps,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-  const id = params.podcastId;
-
-  // fetch data
-  const { results } = await podcastService.getPodcast({ id });
-  const [podcast] = results;
-
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
-
-  return {
-    title: `${podcast.collectionName} ${podcast.kind}`,
-    openGraph: {
-      images: [podcast.artworkUrl60, ...previousImages],
-    },
-  };
-}
 
 export default async function PodcastDetailPage({
   params: { podcastId },
