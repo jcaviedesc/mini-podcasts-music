@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Podcast } from "../../../types/podcasts";
 import styles from "./styles.module.css";
-import { PodcastLink } from "../PodcastLink";
+import Link from "next/link";
 
 export const PodcastListDetailCard = (podcast: Podcast) => {
   const podcastImage =
@@ -19,15 +19,12 @@ export const PodcastListDetailCard = (podcast: Podcast) => {
           height={96}
         />
       </div>
-      <PodcastLink
-        href={`podcast/${podcast.id.attributes["im:id"]}`}
-        podcast={podcast}
-      >
+      <Link href={`/podcast/${podcast.id.attributes["im:id"]}`}>
         <div className={styles.card}>
           <h3>{podcast["im:name"].label}</h3>
           <span>Author: {podcast["im:artist"].label}</span>
         </div>
-      </PodcastLink>
+      </Link>
     </div>
   );
 };

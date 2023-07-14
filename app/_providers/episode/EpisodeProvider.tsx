@@ -1,21 +1,21 @@
 "use client";
 
-import { useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 import { EpisodeContext } from "./EpisodeContext";
-import { Podcast, PodcastEpisodesResult } from "../../../types/podcasts";
+import { PodcastEpisodesResult } from "../../../types/podcasts";
 
 type PodcastProviderProps = {
   children: React.ReactNode;
-  initialValue?: PodcastEpisodesResult;
+  initialEpisode?: PodcastEpisodesResult;
 };
 
 export function EpisodeProvider({
   children,
-  initialValue,
+  initialEpisode,
 }: PodcastProviderProps) {
   const [selectedEpisode, setSelectedEpisode] = useState<
     PodcastEpisodesResult | undefined
-  >(initialValue);
+  >(initialEpisode);
 
   const value = useMemo(
     () => ({
@@ -24,7 +24,7 @@ export function EpisodeProvider({
     }),
     [selectedEpisode]
   );
-  console.log({ selectedEpisode });
+
   return (
     <EpisodeContext.Provider value={value}>{children}</EpisodeContext.Provider>
   );

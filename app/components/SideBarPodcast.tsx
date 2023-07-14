@@ -1,36 +1,37 @@
-"use client";
 import Image from "next/image";
-import { usePodcast } from "../_providers/podcast";
+import Link from "next/link";
 
-export function SideBarPodcast() {
-  const { podcast } = usePodcast();
-  const maxImageNumber = podcast?.["im:image"]?.length ?? 0;
-  const imageInfo =
-    maxImageNumber > 0
-      ? podcast?.["im:image"][maxImageNumber - 1]
-      : {
-          label: "",
-        };
+type SideBarPodcastProps = {
+  podcastId: number;
+  image: string;
+  title: string;
+  artistName?: string;
+  description?: string;
+};
 
+export function SideBarPodcast({
+  podcastId,
+  image,
+  title,
+  artistName,
+  description,
+}: SideBarPodcastProps) {
   return (
     <div className="flex flex-col bg-white rounded-lg p-4 shadow">
       <div className="flex justify-center border-b border-gray-300 pb-6">
-        <Image
-          src={imageInfo?.label as string}
-          width={200}
-          height={200}
-          alt={podcast?.title.label ?? ""}
-        />
+        <Link href={`/podcast/${podcastId}`}>
+          <Image src={image} width={200} height={200} alt={title} />
+        </Link>
       </div>
-      <div className="pt-6 pb-6 border-b border-gray-300">
-        <h3 className="text-gray-900 font-bold">{podcast?.title.label}</h3>
-        <p className="text-gray-900">
-          by {podcast?.["im:artist"]?.label ?? ""}
-        </p>
-      </div>
+      <Link href={`/podcast/${podcastId}`}>
+        <div className="pt-6 pb-6 border-b border-gray-300">
+          <h3 className="text-gray-900 font-bold">{title}</h3>
+          <p className="text-gray-900">by {artistName}</p>
+        </div>
+      </Link>
       <div className="pt-6 pb-6">
         <p className="text-gray-900 font-bold">Description</p>
-        <p className="text-gray-900">{podcast?.summary.label}</p>
+        <p className="text-gray-900">{description}</p>
       </div>
     </div>
   );

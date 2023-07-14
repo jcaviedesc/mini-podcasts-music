@@ -13,11 +13,10 @@ type pageProps = {
 export default async function PodcastDetailPage({
   params: { podcastId },
 }: pageProps) {
-  const { resultCount, results: episodes } = await podcastService.getPodcast({
+  const { resultCount, results } = await podcastService.getPodcast({
     id: podcastId,
   });
-  console.log("-------------------");
-  console.log(episodes.slice(0, 2));
+  const [_, ...episodes] = results;
   return (
     <div>
       <div className="bg-white rounded-lg p-4 shadow mb-4">
