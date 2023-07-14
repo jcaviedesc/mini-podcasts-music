@@ -1,13 +1,14 @@
 "use client";
 import { useState } from "react";
 import styles from "./search.module.css";
+import { Podcast } from "../../../types/podcasts";
 
 export function SearchBar() {
-  const [podcastsList, setPodcastList] = useState([]);
+  const [podcastsList, setPodcastList] = useState<Podcast[]>([]);
   const onSearch = (event: { target: { value: string } }) => {
     const searchValue = event.target.value.toLowerCase();
     if (searchValue === "") {
-      setPodcastList(podcasts);
+      setPodcastList([]);
     } else {
       const filteredPodcasts = podcastsList.filter(
         (podcasts) =>
