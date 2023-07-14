@@ -29,6 +29,7 @@ export function SearchBar() {
         name="podcastsearch"
         placeholder="Filter Podcast..."
         onChange={onSearch}
+        className={styles.searchInput}
       />
     </div>
   );

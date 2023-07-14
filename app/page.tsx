@@ -4,9 +4,7 @@ import { PodcastGrid, SearchBar } from "./components";
 export default async function PodcastPage() {
   return (
     <div className={styles.main}>
-      <div>
-        <SearchBar />
-      </div>
+      <SearchBar />
       <PodcastGrid />
     </div>
   );
